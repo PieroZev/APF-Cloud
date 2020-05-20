@@ -1,7 +1,7 @@
 <?php
 	header('Access-Control-Allow-Origin: *');
 	$cn = mysqli_connect("localhost","root","","asperopacificfoods");
-	$rs = mysqli_query($cn,"select * from productos order by Nombre");
+	$rs = mysqli_query($cn,"select * from productos order by NomProducto");
 	while($row=mysqli_fetch_assoc($rs)){
 		$res[]=array_map("utf8_encode",$row);
 	}
