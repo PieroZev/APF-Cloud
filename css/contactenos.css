@@ -1,0 +1,29 @@
+#banner{
+    padding-top:100px;
+    padding-bottom:100px;
+}
+
+td.table-row{
+    padding-top:20px;
+    padding-right:30px;
+    padding-bottom:30px;
+}
+td.table-row-end{
+    padding-top:20px;
+    padding-bottom:30px;
+    font-size:11px;
+}
+
+.table-row-end p{
+    display:none;
+    
+}
+
+@media (max-width:500px){
+    .table-row-end p{
+        display:block;
+    }
+    .correo{
+        display:none;
+    }
+}
