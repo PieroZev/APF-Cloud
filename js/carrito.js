@@ -27,7 +27,7 @@ if(findIP!=undefined){
 findIP.then(ip => $(".tuIP").text(ip).css("display","none")).catch(e => console.error(e)).finally(function(){
 
 $.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoNumPedido.php",
+		url:"http://localhost/php/AsperoNumPedido.php",
 		method:"POST",
 		dataType:"json",
 		
@@ -57,7 +57,7 @@ $(".actualizar").click(function(){
 				//alert(Cantidad);
 				//alert("prueba:"+NumPedido);
 			$.ajax({
-				url:"https://asperopacificfoods.com/php/AsperoActualizarProducto.php",
+				url:"http://localhost/php/AsperoActualizarProducto.php",
 				method:"POST",
 				dataType:"json",
 				data:{num:NumPedido,cod:CodProducto,cant:Cantidad}
@@ -85,7 +85,7 @@ $(".actualizar").click(function(){
 
 else{
     $.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoNumPedido.php",
+		url:"http://localhost/php/AsperoNumPedido.php",
 		method:"POST",
 		dataType:"json",
 		
@@ -115,7 +115,7 @@ $(".actualizar").click(function(){
 				//alert(Cantidad);
 				//alert("prueba:"+NumPedido);
 			$.ajax({
-				url:"https://asperopacificfoods.com/php/AsperoActualizarProducto.php",
+				url:"http://localhost/php/AsperoActualizarProducto.php",
 				method:"POST",
 				dataType:"json",
 				data:{num:NumPedido,cod:CodProducto,cant:Cantidad}
@@ -159,7 +159,7 @@ function completarDecimales(numero){
 	Subtotal=0;
 	Total=0;
 		$.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoCarritoMostrar.php",
+		url:"http://localhost/php/AsperoCarritoMostrar.php",
 		method:"POST",
 		dataType:"json",
 		data:{idp:NumPedido}
@@ -185,7 +185,7 @@ function completarDecimales(numero){
 	
 		function mostrarCategorias(){
 		$.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoCategorias.php",
+		url:"http://localhost/php/AsperoCategorias.php",
 		method:"POST",
 		dataType:"json"
 		
@@ -214,7 +214,7 @@ function completarDecimales(numero){
 		var producto = $(this).parent().parent();
 		var CodProducto = parseInt(producto.find("img").attr("id"));
 		$.ajax({
-			url:"https://asperopacificfoods.com/php/AsperoEliminarProducto.php",
+			url:"http://localhost/php/AsperoEliminarProducto.php",
 			method:"POST",
 			dataType:"json",
 			data:{num:NumPedido,cod:CodProducto}

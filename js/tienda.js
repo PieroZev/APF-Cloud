@@ -23,7 +23,7 @@ findIP.then(ip => $(".tuIP").text(ip).css("display","none")).catch(e => console.
 
 	//Retorna el valor de NumPedido
 	$.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoNumPedido.php",
+		url:"http://localhost/php/AsperoNumPedido.php",
 		method:"POST",
 		dataType:"json",
 		
@@ -37,7 +37,7 @@ findIP.then(ip => $(".tuIP").text(ip).css("display","none")).catch(e => console.
 	
 	//LLama a los Productos
 	    $.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoProductosTodos.php",
+		url:"http://localhost/php/AsperoProductosTodos.php",
 		method:"POST",
 		dataType:"json",
 		data:{IdCat:IdCat}
@@ -67,7 +67,7 @@ findIP.then(ip => $(".tuIP").text(ip).css("display","none")).catch(e => console.
 		var precio=parseInt(producto.find("div p").text());
 			//alert(codigo + nombre + precio);
 		$.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoCarritoAgregar.php",
+		url:"http://localhost/php/AsperoCarritoAgregar.php",
 		method:"POST",
 		dataType:"json",
 		data:{num:NumPedido,cod:codigo,nom:nombre,pre:precio}
@@ -86,7 +86,7 @@ findIP.then(ip => $(".tuIP").text(ip).css("display","none")).catch(e => console.
 	
 	function mostrarCategorias(){
 		$.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoCategorias.php",
+		url:"http://localhost/php/AsperoCategorias.php",
 		method:"POST",
 		dataType:"json"
 		
@@ -104,7 +104,7 @@ findIP.then(ip => $(".tuIP").text(ip).css("display","none")).catch(e => console.
 		var IdCat=$(this).attr("id");
 		//alert(IdCat);
 		$.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoProductosTodos.php",
+		url:"http://localhost/php/AsperoProductosTodos.php",
 		method:"POST",
 		dataType:"json",
 		data:{IdCat:IdCat}

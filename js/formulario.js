@@ -9,7 +9,7 @@ $(document).ready(function(){
 
 
         $.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoDistritos.php",
+		url:"http://localhost/php/AsperoDistritos.php",
 		method:"POST",
 		dataType:"json"}).done(function(data){
 		    
@@ -51,7 +51,7 @@ $(document).ready(function(){
             if(Total!=0&&NumPedido!=0){
                 if(empresa.trim()!=""&&ruc.trim()!=""&&ruc.length==11&&nombre!=""&&telefono.trim()!=""&&email.trim()!=""&&direccion.trim()!=""&&sede.trim()!=""&&distrito.trim()!=""){
             $.ajax({
-		url:"https://asperopacificfoods.com/php/EnviarCorreo.php",
+		url:"http://localhost/php/EnviarCorreo.php",
 		method:"POST",
 		dataType:"json",
 		data:{emp:empresa,ruc:ruc,nom:nombre,tel:telefono,ema:email,dir:direccion,sede:sede,dis:distrito,num:NumPedido,tot:Total}
@@ -78,7 +78,7 @@ $(document).ready(function(){
 	
 	function mostrarCategorias(){
 		$.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoCategorias.php",
+		url:"http://localhost/php/AsperoCategorias.php",
 		method:"POST",
 		dataType:"json"
 		

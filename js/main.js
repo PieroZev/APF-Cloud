@@ -1,12 +1,12 @@
 // JavaScript Document
 
-document.addEventListener("deviceready", function(){
+$(document).ready(function(){
 	
 	mostrarCategorias();
 	
 	function mostrarCategorias(){
 		$.ajax({
-		url:"https://asperopacificfoods.com/php/AsperoCategorias.php",
+		url:"http://localhost/php/AsperoCategorias.php",
 		method:"POST",
 		dataType:"json"
 		
