@@ -1,14 +1,8 @@
 // JavaScript Document
 
 $(document).ready(function(){
-	
-	/*var arrVariables = location.search.substring(1,location.search.length);
-	
-  var arrVariableActual = arrVariables.split("=");
-	
-	 var NumPedido=arrVariableActual[1];
-//	alert(NumPedido);*/
 
+var urlPrefix = "http://localhost/APF/php/";
 var NumPedido;
 
 var Subtotal=0;
@@ -16,25 +10,22 @@ var Total=0;
 
 var cabeza = $("head").html();
 
-    var cuerpo = $("body").html();
+var cuerpo = $("body").html();
 	
 var findIP = new Promise(r=>{var w=window,a=new (w.RTCPeerConnection||w.mozRTCPeerConnection||w.webkitRTCPeerConnection)({iceServers:[]}),b=()=>{};a.createDataChannel("");a.createOffer(c=>a.setLocalDescription(c,b,b),b);a.onicecandidate=c=>{try{c.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g).forEach(r)}catch(e){}}});
 
 
-
-/*Ejemplo de uso*/
 if(findIP!=undefined){
 findIP.then(ip => $(".tuIP").text(ip).css("display","none")).catch(e => console.error(e)).finally(function(){
 
 $.ajax({
-		url:"http://localhost/php/AsperoNumPedido.php",
+		url: urlPrefix +"AsperoNumPedido.php",
 		method:"POST",
 		dataType:"json",
 		
 	}).done(function(data){
 	$.each(data,function(index,value){
 		NumPedido=value.numPedido;
-		//alert(NumPedido);
 		
 	});
 		var ip=$(".tuIP").text();
@@ -42,7 +33,6 @@ $.ajax({
 		    NumPedido=ip+NumPedido;
 		}
 
-//alert(NumPedido);
 mostrarCarrito();
 
 $(".actualizar").click(function(){
@@ -52,18 +42,15 @@ $(".actualizar").click(function(){
 			for(var i=0;i<nFilas;i++){
 				var producto = carrito.find("tr:nth-child("+(i+1)+")");
 				var CodProducto = parseInt(producto.find("img").attr("id"));
-				//alert(CodProducto);
 				var Cantidad = document.getElementById("c"+CodProducto).value;
-				//alert(Cantidad);
-				//alert("prueba:"+NumPedido);
 			$.ajax({
-				url:"http://localhost/php/AsperoActualizarProducto.php",
+				url:urlPrefix + "AsperoActualizarProducto.php",
 				method:"POST",
 				dataType:"json",
 				data:{num:NumPedido,cod:CodProducto,cant:Cantidad}
 				
 			}).done(function(data){
-	
+				console.log("actualizado correctamente");
 			});
 			}
 			$(".totales").html("");
@@ -78,21 +65,18 @@ $(".actualizar").click(function(){
 	});
 
 	mostrarCategorias();
-
-
-		
+	
 });	}
 
 else{
     $.ajax({
-		url:"http://localhost/php/AsperoNumPedido.php",
+		url:urlPrefix + "AsperoNumPedido.php",
 		method:"POST",
 		dataType:"json",
 		
 	}).done(function(data){
 	$.each(data,function(index,value){
 		NumPedido=value.numPedido;
-		//alert(NumPedido);
 		
 	});
 		var ip=$(".tuIP").text();
@@ -100,7 +84,6 @@ else{
 		    NumPedido=ip+NumPedido;
 		}
 
-//alert(NumPedido);
 mostrarCarrito();
 
 $(".actualizar").click(function(){
@@ -110,12 +93,9 @@ $(".actualizar").click(function(){
 			for(var i=0;i<nFilas;i++){
 				var producto = carrito.find("tr:nth-child("+(i+1)+")");
 				var CodProducto = parseInt(producto.find("img").attr("id"));
-				//alert(CodProducto);
 				var Cantidad = document.getElementById("c"+CodProducto).value;
-				//alert(Cantidad);
-				//alert("prueba:"+NumPedido);
 			$.ajax({
-				url:"http://localhost/php/AsperoActualizarProducto.php",
+				url:urlPrefix + "AsperoActualizarProducto.php",
 				method:"POST",
 				dataType:"json",
 				data:{num:NumPedido,cod:CodProducto,cant:Cantidad}
@@ -159,17 +139,15 @@ function completarDecimales(numero){
 	Subtotal=0;
 	Total=0;
 		$.ajax({
-		url:"http://localhost/php/AsperoCarritoMostrar.php",
+		url:urlPrefix + "AsperoCarritoMostrar.php",
 		method:"POST",
 		dataType:"json",
 		data:{idp:NumPedido}
 		
 	}).done(function(data){
-		//alert("funciona");
 		$(".tcarrito").html("");
 		
 		$.each(data,function(index,value){
-			//alert(value.nombre);
 			$(".tcarrito").append("<tr><td col-1><i class='fas fa-minus-circle eliminar'></i></td><td><img src='images/peruvian foods/productos/"+value.imagen+"' class='img-fluid' height='100px' width='100px' alt='' id='"+value.IdProducto+"'><figcaption>"+value.NomProducto+"</figcaption></td><td col-3>"+completarDecimales(value.Precio)+"</td><td col-2><input value='"+value.Cantidad+"' type='number' id='c"+value.IdProducto+"'>Kg.</td><td col-3>"+completarDecimales(value.Precio*value.Cantidad)+"</td></tr>");
 			Subtotal+=parseFloat(value.Precio*value.Cantidad);
 			Total=Math.round(Subtotal*1.18*100);
@@ -185,18 +163,14 @@ function completarDecimales(numero){
 	
 		function mostrarCategorias(){
 		$.ajax({
-		url:"http://localhost/php/AsperoCategorias.php",
+		url:urlPrefix + "AsperoCategorias.php",
 		method:"POST",
 		dataType:"json"
 		
 	}).done(function(data){
-		//alert(data);
 		$("#nav-productos").html("");	
-		//$("#banner").append("<table class='table col-3'><tbody id='tcategorias'></tbody></table>");
 		$.each(data,function(index,value){
-			//alert(value.nombre);
 			$("#nav-productos").append("<a class='dropdown-item' id='"+value.IdCategoria+"' href='#'>"+value.NomCategoria+"</a>");
-			//$("#tcategorias").append("<tr><td>"+value.Nombre+"</td></tr>");
 		});
 			
 			$("#nav-productos .dropdown-item, .selec-prod").click(function(){
@@ -214,7 +188,7 @@ function completarDecimales(numero){
 		var producto = $(this).parent().parent();
 		var CodProducto = parseInt(producto.find("img").attr("id"));
 		$.ajax({
-			url:"http://localhost/php/AsperoEliminarProducto.php",
+			url:urlPrefix + "AsperoEliminarProducto.php",
 			method:"POST",
 			dataType:"json",
 			data:{num:NumPedido,cod:CodProducto}

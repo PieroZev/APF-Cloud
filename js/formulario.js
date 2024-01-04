@@ -14,7 +14,6 @@ $(document).ready(function(){
 		dataType:"json"}).done(function(data){
 		    
 		    	$.each(data,function(index,value){
-			//alert(value.nombre);
 			$("#inputDistrito").append("<option value='"+value.nomDistrito+"'>"+value.nomDistrito+"</option>");
 			
 				
@@ -45,7 +44,6 @@ $(document).ready(function(){
             if(document.getElementById("#inputDistrito")!=null)
             var distrito =document.getElementById("#inputDistrito").value;
             else distrito = "LIMA";
-			//alert(codigo + nombre + precio);
         
         
             if(Total!=0&&NumPedido!=0){
@@ -67,7 +65,6 @@ $(document).ready(function(){
         }
        else{
             alert("No se ha realizado ningún pedido");
-            //window.location.href="tienda.html?IdCat=1";
        }
        
 		});
@@ -83,11 +80,9 @@ $(document).ready(function(){
 		dataType:"json"
 		
 	}).done(function(data){
-		//alert(data);
 		$("#nav-productos").html("");	
 		
 		$.each(data,function(index,value){
-			//alert(value.nombre);
 			$("#nav-productos").append("<a class='dropdown-item' id='"+value.IdCategoria+"' href='#'>"+value.NomCategoria+"</a>");
 			
 		});
